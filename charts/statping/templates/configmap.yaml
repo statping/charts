@@ -1,0 +1,7 @@
+apiVersion:  v1
+kind: ConfigMap
+metadata:
+  name: {{ template "statping.fullname" . }}
+data:
+    PORT: {{ .Values.service.port  | quote }}
+    DB_CONN: {{ .Values.database.connection  | quote }}

@@ -1,0 +1,31 @@
+# Statping / Docker / Kubernetes / Helm
+
+[![Codecov](https://img.shields.io/codecov/c/github/statping/statping?style=for-the-badge&logo=codecov)](https://codecov.io/gh/statping/statping)
+[![GitHub stars](https://img.shields.io/github/stars/statping/statping?style=for-the-badge&logo=github)](https://github.com/statping/statping/stargazers)
+[![GitHub issues](https://img.shields.io/github/issues/statping/statping?style=for-the-badge&logo=github)](https://github.com/statping/statping/issues)
+[![DockerHub](https://img.shields.io/docker/pulls/statping/statping.svg?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/statping/statping)
+[![DockerHub](https://img.shields.io/badge/SIZE-%3C%2030%20MB-1488C6?style=for-the-badge&logo=docker)](https://hub.docker.com/repository/docker/statping/statping)
+
+> - Read the docs : [https://github.com/statping/statping](https://github.com/statping/statping)
+> - Read the [release notes](https://github.com/statping/statping/releases)
+
+Statping is a server that monitors your services.
+
+More information/documentation [Project Repository](https://github.com/statping/statping)
+
+## Adding the Repository
+
+```bash
+helm repo add statping https://statping.github.io/charts
+helm repo update
+```
+
+## Deploy Statping with helm
+
+```bash
+helm upgrade -i ${name} statping/statping --namespace ${namespace} --force
+```
+
+{{ template "chart.valuesSection" . }}
+
+## Changelog
