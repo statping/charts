@@ -1,42 +1,33 @@
-{{- if .Values.ingress.enabled -}}
-{{- $fullName := include "statping.fullname" . -}}
-{{- $svcPort := .Values.service.port -}}
-{{- if semverCompare ">=1.14-0" .Capabilities.KubeVersion.GitVersion -}}
-apiVersion: networking.k8s.io/v1beta1
-{{- else -}}
-apiVersion: extensions/v1beta1
-{{- end }}
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: {{ include "statping.fullname" . }}
   namespace: {{ .Release.Namespace }}
-  labels: {{ include "statping.labels" . | indent 4 }}
+  labels: {{ include "statping.labels" . | nindent 4 }}
     app.kubernetes.io/component: statping
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
   {{- end }}
 spec:
-  {{- if .Values.ingress.tls }}
+  {{- if or .Values.ingress.tls }}
   tls:
-    {{- range .Values.ingress.tls }}
+    {{- if .Values.ingress.tls }}
     - hosts:
-        {{- range .hosts }}
-        - {{ . | quote }}
-      {{- end }}
-      secretName: {{ .secretName }}
-  {{- end }}
+        - {{ .Values.ingress.hostname }}
+      secretName: {{ printf "%s-cert" .Values.ingress.hostname }}
+    {{- end }}
   {{- end }}
   rules:
-    {{- range .Values.ingress.hosts }}
-    - host: {{ .host | quote }}
+    {{- if .Values.ingress.hostname }}
+    - host: {{ .Values.ingress.hostname }}
       http:
         paths:
-          {{- range .paths }}
-          - path: {{ . }}
+          - path: {{ .Values.ingress.path }}
+            pathType: {{ .Values.ingress.pathType }}
             backend:
-              serviceName: {{ $fullName }}
-              servicePort: {{ $svcPort }}
-  {{- end }}
-  {{- end }}
-  {{- end }}
+              service:
+                name: {{ include "statping.fullname" . }}
+                port:
+                  name: http
+    {{- end }}
