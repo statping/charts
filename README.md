@@ -4,6 +4,7 @@
 [![GitHub issues](https://img.shields.io/github/issues/statping/charts?style=for-the-badge)](https://github.com/statping/statping/issues)
 [![GitHub license](https://img.shields.io/github/license/statping/charts?style=for-the-badge)](https://github.com/statping/statping)
 
+
 Popular applications, provided by [Statping](https://github.com/statping), charts are available in [Helm Hub](https://hub.helm.sh)
 
 ## TL;DR
