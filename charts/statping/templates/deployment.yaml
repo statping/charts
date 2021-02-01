@@ -2,8 +2,9 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "statping.fullname" . }}
-  labels:
-{{ include "statping.labels" . | indent 4 }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{ include "statping.labels" . | nindent 4 }}
+    app.kubernetes.io/component: statping
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
@@ -38,6 +39,11 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ template "statping.fullname" . }}
+          volumeMounts:
+            {{- if .Values.persistence.enabled }}
+            - name: data
+              mountPath: /data
+            {{- end }}
           livenessProbe:
             httpGet:
                 path: {{ .Values.livenessProbe.httpGet.path }}
@@ -47,18 +53,21 @@ spec:
             timeoutSeconds: {{ .Values.livenessProbe.timeoutSeconds }}
             failureThreshold: {{ .Values.livenessProbe.failureThreshold }}
             successThreshold: {{ .Values.livenessProbe.successThreshold }}
-          startupProbe:
-            httpGet:
-              path: {{ .Values.startupProbe.httpGet.path }}
-              port: http
-            failureThreshold: {{ .Values.startupProbe.failureThreshold }}
-            periodSeconds: {{ .Values.startupProbe.periodSeconds }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      volumes:
+        {{- if .Values.persistence.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim | default (include "statping.fullname" .) }}
+        {{- end }}
+        {{- if .Values.extraVolumes }}
+        {{- toYaml .Values.extraVolumes | nindent 8 }}
+        {{- end }}
     {{- with .Values.affinity }}
       affinity:
         {{- toYaml . | nindent 8 }}

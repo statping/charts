@@ -2,8 +2,9 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ include "statping.fullname" . }}
-  labels:
-{{ include "statping.labels" . | indent 4 }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{ include "statping.labels" . | nindent 4 }}
+    app.kubernetes.io/component: statping
 spec:
   type: {{ .Values.service.type }}
   ports:

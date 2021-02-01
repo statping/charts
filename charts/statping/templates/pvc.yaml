@@ -1,0 +1,16 @@
+{{- if .Values.persistence.enabled -}}
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: {{ include "statping.fullname" . }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{ include "statping.labels" . | nindent 4 }}
+    app.kubernetes.io/component: statping
+spec:
+  storageClassName: ""
+  accessModes:
+    - {{ .Values.persistence.accessMode | quote }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.size | quote }}
+  {{- end -}}

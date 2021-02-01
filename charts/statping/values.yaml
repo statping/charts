@@ -37,6 +37,12 @@ service:
   type: ClusterIP
   port: 8080
 
+persistence:
+  enabled: true
+  accessMode: ReadWriteOnce
+  size: 10Gi
+#  existingClaim:
+
 ingress:
   # ingress.enabled -- Enable ingress
   enabled: false
@@ -55,6 +61,8 @@ resources:
   requests:
     cpu: 50m
     memory: 128Mi
+
+extraVolumes: []
 
 nodeSelector: {}
 

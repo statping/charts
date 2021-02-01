@@ -9,8 +9,9 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
-  labels:
-{{ include "statping.labels" . | indent 4 }}
+  namespace: {{ .Release.Namespace }}
+  labels: {{ include "statping.labels" . | indent 4 }}
+    app.kubernetes.io/component: statping
   {{- with .Values.ingress.annotations }}
   annotations:
     {{- toYaml . | nindent 4 }}
