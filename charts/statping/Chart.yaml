@@ -2,7 +2,7 @@ apiVersion: v2
 appVersion: "0.90.74"
 icon: https://statping.github.io/charts/statping/assets/images/icon.png
 name: statping
-version: 0.1.1
+version: 0.1.12
 description: Statping for Kubernetes
 keywords:
   - statping
