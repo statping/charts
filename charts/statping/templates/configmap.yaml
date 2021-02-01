@@ -5,3 +5,12 @@ metadata:
 data:
     PORT: {{ .Values.service.port  | quote }}
     DB_CONN: {{ .Values.database.connection  | quote }}
+    DB_HOST: {{ .Values.database.host  | quote }}
+    DB_PORT: {{ .Values.database.port  | quote }}
+    DB_USER: {{ .Values.database.username  | quote }}
+    DB_PASS: {{ .Values.database.password  | quote }}
+    DB_DATABASE: {{ .Values.database.database  | quote }}
+    POSTGRES_SSLMODE: {{ .Values.database.sslMode  | quote }}
+    READ_ONLY: {{ .Values.database.readOnly  | quote }}
+    DISABLE_COLORS: {{ .Values.disableColors  | quote }}
+    DEBUG: {{ .Values.debugMode | quote }}

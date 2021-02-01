@@ -41,10 +41,6 @@ spec:
           livenessProbe:
             httpGet:
                 path: {{ .Values.livenessProbe.httpGet.path }}
-                {{- if .Values.livenessProbe.httpGet.httpHeaders }}
-                httpHeaders:
-{{ toYaml .Values.livenessProbe.httpGet.httpHeaders | indent 16 }}
-                {{- end }}
                 port: http
             initialDelaySeconds: {{ .Values.livenessProbe.initialDelaySeconds }}
             periodSeconds: {{ .Values.livenessProbe.periodSeconds }}

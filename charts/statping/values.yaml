@@ -3,6 +3,16 @@ replicaCount: 1
 
 database:
   connection: sqlite
+  host: localhost
+  port: 5432
+  username: root
+  password: password123
+  database: statping_db
+  sslMode: "ssl_mode=disable"
+  readOnly: false
+
+disableColors: true
+debugMode: 1
 
 image:
   # image.repository -- https://hub.docker.com/r/statping/statping
@@ -54,10 +64,7 @@ affinity: {}
 
 livenessProbe:
   httpGet:
-    path: /health
-    httpHeaders:
-    - name: x-echo-code
-      value: "200"
+    path: /api
   initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 2
