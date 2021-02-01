@@ -8,7 +8,7 @@ image:
   # image.repository -- https://hub.docker.com/r/statping/statping
   repository: statping/statping
   # image.tag -- https://github.com/statping/statping/releases
-  tag: latest
+  tag: v0.90.74
   pullPolicy: IfNotPresent
 
 imagePullSecrets: []
