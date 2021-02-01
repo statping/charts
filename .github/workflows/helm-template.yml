@@ -2,7 +2,7 @@ name: Helm Template
 
 on:
   pull_request:
-    branches: master
+    branches: main
 
 jobs:
   build:
