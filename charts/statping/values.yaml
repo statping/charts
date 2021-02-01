@@ -47,7 +47,7 @@ persistence:
 ingress:
   # ingress.enabled -- Enable ingress
   enabled: false
-  pathType: ImplementationSpecific
+  pathType: Prefix
   tls: false
   annotations: {}
   hostname: grafana.local
