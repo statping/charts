@@ -7,7 +7,7 @@ metadata:
   labels: {{ include "statping.labels" . | nindent 4 }}
     app.kubernetes.io/component: statping
 spec:
-  storageClassName: ""
+  storageClassName: {{ .Values.persistence.storageClassName | quote }}
   accessModes:
     - {{ .Values.persistence.accessMode | quote }}
   resources:
