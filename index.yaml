@@ -3,6 +3,24 @@ entries:
   statping:
   - apiVersion: v2
     appVersion: 0.90.74
+    created: "2021-02-01T05:33:55.516843103Z"
+    description: Statping for Kubernetes
+    digest: 95634ef6e5af166437ffed2b212a49b07420c683cd6d21bab628499bf34e127b
+    home: https://github.com/statping/statping
+    icon: https://statping.github.io/charts/statping/assets/images/icon.png
+    keywords:
+    - statping
+    - monitoring
+    maintainers:
+    - name: Hunter Long
+    name: statping
+    sources:
+    - https://github.com/statping/statping
+    urls:
+    - https://github.com/statping/charts/releases/download/statping-0.1.1/statping-0.1.1.tgz
+    version: 0.1.1
+  - apiVersion: v2
+    appVersion: 0.90.74
     created: "2021-02-01T04:55:40.535390954Z"
     description: Statping for Kubernetes
     digest: ccb66d5eedbbe17fdf1b65cf5af2534a13b2548acd20d619695ef92b3918ec24
