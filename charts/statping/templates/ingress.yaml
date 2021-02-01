@@ -15,7 +15,7 @@ spec:
     {{- if .Values.ingress.tls }}
     - hosts:
         - {{ .Values.ingress.hostname }}
-      secretName: {{ printf "%s-cert" .Values.ingress.hostname }}
+      secretName: {{ .Values.ingress.secretName }}
     {{- end }}
   {{- end }}
   rules:

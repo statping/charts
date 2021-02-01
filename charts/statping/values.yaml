@@ -51,6 +51,7 @@ ingress:
   tls: false
   annotations: {}
   hostname: grafana.local
+  secretName: statping-cert
   path: /
   secrets: []
 
