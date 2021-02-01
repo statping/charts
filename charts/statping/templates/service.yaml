@@ -5,6 +5,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels: {{ include "statping.labels" . | nindent 4 }}
     app.kubernetes.io/component: statping
+  annotations:
+  {{- if .Values.service.annotations }}
+  {{- include "common.tplvalues.render" (dict "value" .Values.service.annotations "context" $) | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
