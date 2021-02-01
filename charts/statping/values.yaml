@@ -64,12 +64,18 @@ affinity: {}
 
 livenessProbe:
   httpGet:
-    path: /api
+    path: /health
   initialDelaySeconds: 5
   periodSeconds: 10
   timeoutSeconds: 2
   failureThreshold: 3
   successThreshold: 1
+
+startupProbe:
+  httpGet:
+    path: /health
+  failureThreshold: 3
+  periodSeconds: 10
 
 application:
   logs:

@@ -39,10 +39,19 @@ helm upgrade -i ${name} statping/statping --namespace ${namespace} --force
 | application.enable.request | bool | `true` | Enable request in response |
 | application.logs.ignore.ping | bool | `false` | Don't log ping request on route `/ping` |
 | database.connection | string | `"sqlite"` |  |
+| database.database | string | `"statping_db"` |  |
+| database.host | string | `"localhost"` |  |
+| database.password | string | `"password123"` |  |
+| database.port | int | `5432` |  |
+| database.readOnly | bool | `false` |  |
+| database.sslMode | string | `"ssl_mode=disable"` |  |
+| database.username | string | `"root"` |  |
+| debugMode | int | `1` |  |
+| disableColors | bool | `true` |  |
 | fullnameOverride | string | `""` |  |
 | image.pullPolicy | string | `"IfNotPresent"` |  |
 | image.repository | string | `"statping/statping"` | https://hub.docker.com/r/statping/statping |
-| image.tag | string | `"latest"` | https://github.com/statping/statping/releases |
+| image.tag | string | `"v0.90.74"` | https://github.com/statping/statping/releases |
 | imagePullSecrets | list | `[]` |  |
 | ingress.annotations | object | `{}` | Example `kubernetes.io/ingress.class: nginx` for Nginx Ingress |
 | ingress.enabled | bool | `false` | Enable ingress |
@@ -50,9 +59,7 @@ helm upgrade -i ${name} statping/statping --namespace ${namespace} --force
 | ingress.hosts[0].paths[0] | string | `"/"` |  |
 | ingress.tls | list | `[]` |  |
 | livenessProbe.failureThreshold | int | `3` |  |
-| livenessProbe.httpGet.httpHeaders[0].name | string | `"x-echo-code"` |  |
-| livenessProbe.httpGet.httpHeaders[0].value | string | `"200"` |  |
-| livenessProbe.httpGet.path | string | `"/health"` |  |
+| livenessProbe.httpGet.path | string | `"/api"` |  |
 | livenessProbe.initialDelaySeconds | int | `5` |  |
 | livenessProbe.periodSeconds | int | `10` |  |
 | livenessProbe.successThreshold | int | `1` |  |
