@@ -5,6 +5,10 @@ metadata:
   namespace: {{ .Release.Namespace }}
   labels: {{ include "statping.labels" . | nindent 4 }}
     app.kubernetes.io/component: statping
+  annotations:
+  {{- if .Values.annotations }}
+  {{- include "common.tplvalues.render" (dict "value" .Values.annotations "context" $) | nindent 4 }}
+  {{- end }}  
 spec:
   replicas: {{ .Values.replicaCount }}
   selector:
